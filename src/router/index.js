@@ -55,7 +55,11 @@ const routes = [
  	{
  		path: 'question/waiting',
  		component: () => import('../views/QuestionWaiting.vue')
- 	}
+ 	},
+	{
+		path: 'recommoned',
+		component: () => import('../views/Recommoned.vue')
+		}
  	]
  },
  {

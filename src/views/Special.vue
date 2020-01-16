@@ -1,5 +1,5 @@
 <template>
-	<div  v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
+	<div>
 		<div class="banner">
 			<img src="../assets/image/heart.png" alt="" />
 			<h3>全部专题   </h3>   
@@ -27,33 +27,51 @@
 		name: 'special',
 		data() {
 			return {
-				busy : false,
-				  specials:[], //存放滚动区域要显示的数据
-				  isLoading:false  //默认没有在加载数据
+				specials: [],
+				page: 0,
+				onFetching: false
 
 			};
 		},
-	 methods:{
-		 loadMore: function() {
-		 
-		 this.busy = true;
-		 
-		 var _ = this;
-		 
-		 var vd = {};
-		 
-		this.axios.get('http://localhost:8080/api/special/all').then(res => {
-			    console.log(res.data.data.length);
-			    this.specials = res.data.data;
-			    this.specials.length=res.data.data.length;
-				this.isLoading=false;
-				_.busy=false;
-		})
-		}
-	    },
+		created(){
+			this.$nextTick(function(){
+				this.box = this.$refs.viewBox;
+				this.box.addEventListener('scroll',() =>{
+					var scrollTop = tis.$refs.viewBox.scrollTop;
+					var scrollHeight = this.$refs.viewBox.scrollHeight;
+					var clientHeight = this.$refs.viewBox.clientHeight;
+					if(this.onFetching){
+						
+					}else{
+						if(clientHeight >= scrollHeight - scrollTop -5){
+							this.onFetching = true;
+							setTimeout(() =>{
+								this.page += 1;
+								this.get();
+								this.onFetching = false;
+							},1000)
+						}
+					}
+				},false)
+			})
+		},
 		mounted() {
-			loadMore();
-		}
+			this.get();
+		},
+	 methods:{
+		 get(){
+			 this.axios.get('http://localhost:8080/api/special/all',{
+				 params: {
+					 catis_id: 1,
+					 page: this.page
+				 }
+			 }).then(res => {
+			 	    console.log(res.data.data.length);
+			 	    this.specials = res.data.data;
+			 	    this.specials.length=res.data.data.length;
+			 })
+		 }
+	    },
 	}
 </script>
 
