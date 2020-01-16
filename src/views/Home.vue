@@ -57,7 +57,7 @@ li {
 	}
 	.banner {
 		margin-bottom: 10px;
-		margin-top: -10px;
+		margin-top: 80px;
 		height: 100px;
 		border: 1px solid #d6d6d6;
 		box-shadow: 2px 5px 5px #ddd;

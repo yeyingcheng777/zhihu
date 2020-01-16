@@ -19,23 +19,28 @@
 
 <script>
 	export default {
-		name: 'nav',
+		name: 'Nav',
 		data() {
 			return {};
 		},
 		created() {}
 	}
+	
 </script>
 
 <style lang="scss" scoped>
+	body{
+		margin: 0;
+	}
 	ul {
-		margin-top: 1000px;
-	    list-style-type: none;
-	    margin: 0;
-	    padding: 0;
-	    overflow: hidden;
-	    background-color: #ffffff;
-		height: 100px;
+		list-style-type: none;
+		    margin: 0;
+		    padding: 0;
+		    overflow: hidden;
+		    background-color: #ffffff;
+		    position: fixed;
+		    top: 0;
+		    width: 100%;
 	}
 	li {
 		font-size: larger;
@@ -56,36 +61,9 @@
 		color: black;
 		border-bottom: 2px solid #000000;
 	}
-// 	.gutter{
-// 		position: relative;
-// 		margin-bottom: 10px;
-// 	}
-// 	​
-// 	ul {
-// 	    list-style-type: none;
-// 	    margin: 0;
-// 	    padding: 0;
-// 	    overflow: hidden;
-// 	    background-color: #55aaff;
-// 	}
-	
-// 	li {
-// 	    float: left;
-// 	}
-
-// li a {
-//     display: block;
-//     color: black;
-//     text-align: center;
-//     padding: 14px 16px;
-//     text-decoration: none;
-// }
-
-// li a:hover:not(.active) {
-//     background-color: #ed5564;
-// }
-
-// .active {
-//     background-color: #4CAF50;
-// }
+	.nav-bar{
+		 position: sticky;
+		   position: -webkit-sticky;   
+		   top: 10px;                
+	}
 </style>

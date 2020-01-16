@@ -1,8 +1,8 @@
 <template>
 	<div>
 		<div class="banner">
-			<img src="../assets/image/heart.png" alt="" />
-			<h3>全部专题   </h3>   
+			<img src="../assets/image/1.png" alt="" />
+			<h3>全部专题     </h3>   
 			<h4>共有{{specials.length}}个文章</h4>
 		</div>
 		<div class="container">
@@ -22,57 +22,20 @@
 </template>
 
 <script>
-	
 	export default {
 		name: 'special',
 		data() {
 			return {
-				specials: [],
-				page: 0,
-				onFetching: false
-
+				specials: []
 			};
 		},
 		created(){
-			this.$nextTick(function(){
-				this.box = this.$refs.viewBox;
-				this.box.addEventListener('scroll',() =>{
-					var scrollTop = tis.$refs.viewBox.scrollTop;
-					var scrollHeight = this.$refs.viewBox.scrollHeight;
-					var clientHeight = this.$refs.viewBox.clientHeight;
-					if(this.onFetching){
-						
-					}else{
-						if(clientHeight >= scrollHeight - scrollTop -5){
-							this.onFetching = true;
-							setTimeout(() =>{
-								this.page += 1;
-								this.get();
-								this.onFetching = false;
-							},1000)
-						}
-					}
-				},false)
-			})
-		},
-		mounted() {
-			this.get();
-		},
-	 methods:{
-		 get(){
-			 this.axios.get('http://localhost:8080/api/special/all',{
-				 params: {
-					 catis_id: 1,
-					 page: this.page
-				 }
-			 }).then(res => {
-			 	    console.log(res.data.data.length);
-			 	    this.specials = res.data.data;
-			 	    this.specials.length=res.data.data.length;
-			 })
-		 }
-	    },
-	}
+			this.axios.get('http://localhost:8888/api/special').then(res => {
+				console.log(res);
+				this.specials = res.data.data;
+		 });
+	    }
+	};
 </script>
 
 <style lang="scss" scoped>
@@ -87,7 +50,7 @@
 	.banner {
 		width: 90%;
 		margin-bottom: 10px;
-		margin-top: -10px;
+		margin-top: 80px;
 		height: 100px;
 		border: 1px solid #d6d6d6;
 		box-shadow: 2px 5px 5px #ddd;

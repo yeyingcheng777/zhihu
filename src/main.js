@@ -7,7 +7,6 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI)
 import  infiniteScroll from 'vue-infinite-scroll'
-Vue.use( infiniteScroll);
 Vue.use(VueAxios,axios)
 Vue.config.productionTip = false
 
