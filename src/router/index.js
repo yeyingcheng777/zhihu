@@ -59,7 +59,11 @@ const routes = [
 	{
 		path: 'recommoned',
 		component: () => import('../views/Recommoned.vue')
-		}
+		},
+		{
+				path: 'roundTable',
+				component: () => import('../views/RoundTable.vue')
+			}
  	]
  },
  {
